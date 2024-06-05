@@ -112,6 +112,10 @@ public class TelaMain {
                 case 12:
                     vizualizarPedido(pedidos);
                     break;
+
+                case 13: 
+                    excluirCidade();
+                    break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opção inválida");
                     break;
@@ -207,6 +211,7 @@ public class TelaMain {
                 "10 - Adicionar Produtos ao Pedido \n" +
                 "11 - Listar Pedidos \n" +
                 "12 - Visualizar Pedido \n" +
+                "13 - Excluir Cidade \n" +
                 "0 - Sair \n " +
                 "\nDigite a opção desejada: ";
         int opcao = -1;
@@ -395,6 +400,23 @@ public class TelaMain {
         }
         JOptionPane.showMessageDialog(null, texto);
 
+    }
+
+    public static void excluirCidade(){
+        List<City> cidades = CidadeDAO.getCidades();
+        String texto = "Cidades cadastradas:";
+        for (City cidade : cidades) {
+            texto += "\n " + cidade.id + " - " + cidade.name;
+        }
+
+        texto += "\n  Digite o id da cidade que deseja excluir: ";
+        String  idDigitado = JOptionPane.showInputDialog(texto);
+        if (idDigitado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Um id válido deve ser preenchido.");
+        }else{
+            int idCidade = Integer.valueOf(idDigitado);
+            CidadeDAO.excluir(idCidade);
+        }
     }
 
 }

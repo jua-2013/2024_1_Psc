@@ -55,7 +55,7 @@ public class CidadeDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idCidade);
             ps.execute();
-            Conexao.fecharConn(conn);
+            //Conexao.fecharConn(conn);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString());
             
